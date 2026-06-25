@@ -5,7 +5,14 @@ python-dotenv
 langchain
 langchain-core
 langchain-groq
+langchain-community
+langchain-huggingface
+langchain-text-splitters
 
 pinecone
+langchain-pinecone
 
 pydantic
+
+pypdf
+sentence-transformers
