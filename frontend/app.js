@@ -2,7 +2,7 @@
    Tree AI — Frontend JavaScript
    ════════════════════════════════════════════════════════════════════ */
 
-const API_URL = "http://127.0.0.1:8000/api/chat";
+const API_URL = "https://tree-ai-l1qf.onrender.com";
 
 // ── State 
 let chatHistory = [];
