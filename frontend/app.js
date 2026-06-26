@@ -4,18 +4,18 @@
 
 const API_URL = "http://127.0.0.1:8000/api/chat";
 
-// ── State ────────────────────────────────────────────────────────────
+// ── State 
 let chatHistory = [];
 let isLoading = false;
 
-// ── DOM Elements ─────────────────────────────────────────────────────
+// ── DOM Elements 
 const chatMessages = document.getElementById("chatMessages");
 const messageInput = document.getElementById("messageInput");
 const sendBtn = document.getElementById("sendBtn");
 const welcomeScreen = document.getElementById("welcomeScreen");
 const sidebar = document.getElementById("sidebar");
 
-// ── Input Handling ───────────────────────────────────────────────────
+// ── Input Handling 
 messageInput.addEventListener("input", () => {
     sendBtn.disabled = !messageInput.value.trim() || isLoading;
 });
@@ -32,7 +32,7 @@ function autoResize(el) {
     el.style.height = Math.min(el.scrollHeight, 150) + "px";
 }
 
-// ── Send Message ─────────────────────────────────────────────────────
+// ── Send Message 
 async function sendMessage() {
     const question = messageInput.value.trim();
     if (!question || isLoading) return;
@@ -88,7 +88,7 @@ async function sendMessage() {
     messageInput.focus();
 }
 
-// ── Quick Questions ──────────────────────────────────────────────────
+// ── Quick Questions 
 function askQuickQuestion(question) {
     messageInput.value = question;
     sendBtn.disabled = false;
@@ -99,7 +99,7 @@ function askQuickQuestion(question) {
     }
 }
 
-// ── New Chat ─────────────────────────────────────────────────────────
+// ── New Chat 
 function startNewChat() {
     chatHistory = [];
     chatMessages.innerHTML = "";
@@ -111,7 +111,7 @@ function startNewChat() {
     messageInput.focus();
 }
 
-// ── Toggle Sidebar ───────────────────────────────────────────────────
+// ── Toggle Sidebar 
 function toggleSidebar() {
     if (window.innerWidth <= 900) {
         sidebar.classList.toggle("open");
@@ -120,7 +120,7 @@ function toggleSidebar() {
     }
 }
 
-// ── Render Messages ──────────────────────────────────────────────────
+// ── Render Messages 
 function appendMessage(role, content, sources = []) {
     const messageDiv = document.createElement("div");
     messageDiv.className = `message ${role}`;
@@ -163,7 +163,7 @@ function appendMessage(role, content, sources = []) {
     scrollToBottom();
 }
 
-// ── Typing Indicator ─────────────────────────────────────────────────
+// ── Typing Indicator 
 function showTypingIndicator() {
     const div = document.createElement("div");
     div.className = "message assistant";
@@ -184,20 +184,20 @@ function showTypingIndicator() {
     return div;
 }
 
-// ── Toggle Sources ───────────────────────────────────────────────────
+// ── Toggle Sources 
 function toggleSources(id) {
     const el = document.getElementById(id);
     if (el) el.classList.toggle("visible");
 }
 
-// ── Scroll ───────────────────────────────────────────────────────────
+// ── Scroll 
 function scrollToBottom() {
     requestAnimationFrame(() => {
         chatMessages.scrollTop = chatMessages.scrollHeight;
     });
 }
 
-// ── Basic Markdown Renderer ──────────────────────────────────────────
+// ── Basic Markdown Renderer 
 function renderMarkdown(text) {
     if (!text) return "";
 
@@ -250,5 +250,5 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// ── Init ─────────────────────────────────────────────────────────────
+// ── Init 
 messageInput.focus();

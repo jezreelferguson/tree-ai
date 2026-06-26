@@ -7,7 +7,7 @@ informed answer using the Groq LLM.
 from app.services.llm_service import llm
 from app.services.pinecone_service import similarity_search
 
-# ── System prompt ────────────────────────────────────────────────────
+# ── System prompt
 SYSTEM_PROMPT = """You are **Tree AI**, a professional AI Health Consultant, Advisor, and Assistant.
 
 Your knowledge is grounded in the **WHO World Health Statistics** and established medical literature.
@@ -39,7 +39,7 @@ def ask_health_question(question: str, chat_history: list[dict] | None = None) -
       - answer: the AI response text
       - sources: list of source snippets used
     """
-    # ── 1. Retrieve relevant context from Pinecone ───────────────────
+    # ── 1. Retrieve relevant context from Pinecone
     retrieved_docs = similarity_search(question, k=5)
 
     context_parts = []
@@ -55,7 +55,7 @@ def ask_health_question(question: str, chat_history: list[dict] | None = None) -
 
     context_block = "\n\n---\n\n".join(context_parts) if context_parts else "No specific WHO data available for this query."
 
-    # ── 2. Build conversation messages ───────────────────────────────
+    # ── 2. Build conversation messages 
     messages = [{"role": "system", "content": SYSTEM_PROMPT}]
 
     # Include recent chat history for conversational context
@@ -74,7 +74,7 @@ Provide a helpful, evidence-based answer using the WHO data above where relevant
 
     messages.append({"role": "user", "content": user_message})
 
-    # ── 3. Generate response ─────────────────────────────────────────
+    # ── 3. Generate response
     response = llm.invoke(messages)
 
     return {
