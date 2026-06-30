@@ -14,7 +14,7 @@ from app.config.settings import (
 )
 from app.services.embedding_service import embeddings
 
-# ── Pinecone client ──────────────────────────────────────────────────
+# ── Pinecone client 
 pc = Pinecone(api_key=PINECONE_API_KEY)
 
 # Create the index if it doesn't exist, or recreate if dimension mismatches
@@ -44,7 +44,7 @@ else:
 
 index = pc.Index(PINECONE_INDEX)
 
-# ── LangChain vector store wrapper ───────────────────────────────────
+# ── LangChain vector store wrapper 
 vector_store = PineconeVectorStore(
     index=index,
     embedding=embeddings,

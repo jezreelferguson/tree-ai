@@ -18,7 +18,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from app.config.settings import CHUNK_SIZE, CHUNK_OVERLAP
 from app.services.pinecone_service import vector_store
 
-# ── Paths ────────────────────────────────────────────────────────────
+# ── Paths 
 DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "docs")
 PDF_PATH = os.path.join(DATA_DIR, "who-statistics.pdf")
 
@@ -35,7 +35,7 @@ def ingest_pdf(path: str = PDF_PATH):
     pages = loader.load()
     print(f"  → Loaded {len(pages)} pages")
 
-    # ── Split into overlapping chunks ────────────────────────────────
+    # ── Split into overlapping chunks 
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=CHUNK_SIZE,
         chunk_overlap=CHUNK_OVERLAP,
@@ -49,7 +49,7 @@ def ingest_pdf(path: str = PDF_PATH):
         chunk.metadata["source"] = "WHO World Health Statistics"
         chunk.metadata["chunk_id"] = i
 
-    # ── Upsert into Pinecone via LangChain ───────────────────────────
+    # ── Upsert into Pinecone via LangChain 
     BATCH_SIZE = 50
     total = len(chunks)
     for start in range(0, total, BATCH_SIZE):
