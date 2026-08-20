@@ -212,6 +212,7 @@ function Sidebar({
           {!collapsed && <span>Your account</span>}
         </div>
       </div>
+       <cite className='text-muted text-center'>Powerd By WHO</cite>
     </aside>
   )
 }
