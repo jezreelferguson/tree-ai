@@ -50,7 +50,7 @@ pip install -r requirements.txt
 
 ### 4. Run the Development Server
 ```bash
-fastapi dev main.py
+uvicorn app.main:app --reload --port 1010
 ```
 *Note: If you are using an older version of FastAPI, use: `uvicorn main:app --reload`*
 
